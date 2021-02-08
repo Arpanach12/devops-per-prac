@@ -1,0 +1,24 @@
+  101  wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.56/bin/apache-tomcat-8.5.56.zip
+  102  cd ../../
+  103  edit   /opt/tomcat/conf/tomcat-users.xml
+  104  vi /opt/tomcat/conf/tomcat-users.xml
+  105  chmod +x bin/catalina.sh 
+  106  vi /opt/tomcat/webapps/manager/META-INF/context.xml
+  107  cd opt/tomcat/
+  108  chmod +x bin/catalina.sh 
+  109  ./bin/catalina.sh start
+  110  ps -ef | grep -i tomcat
+  111  netstat -tulnp | grep -i 8080
+  112  history
+  113  cd ../../
+  114  ls
+  115  cd prac/devops-per-prac/
+  116  cd 03-tomcat/
+  117  ls
+  118  rm apache-tomcat-8.5.56.zip
+  119  ls
+  120  cat apache-tomcat-8.5.56.zip.1
+  121  rm apache-tomcat-8.5.56.zip.1
+  122  ls
+  123  rm apache-tomcat-8.5.56/
+  124  rm -r apache-tomcat-8.5.56/
