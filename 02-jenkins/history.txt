@@ -1,0 +1,100 @@
+    1  clear
+    2  ls
+    3  git --version
+    4  cd ../../
+    5  mkdir prac
+    6  cd prac/
+    7  ls
+    8  git init
+    9  git clone git@github.com:Arpanach12/devops-per-prac.git
+   10  clear
+   11  git clone git@github.com:Arpanach12/devops-per-prac.git
+   12  ls
+   13  clear
+   14  ssh-keygen
+   15  cd ~/.ssh
+   16  ls -la
+   17  cd id_rsa.pub 
+   18  cd ..
+   19  ls
+   20  cd /etc/ssh/sshd_config
+   21  cd etc/
+   22  ls
+   23  cd ssh
+   24  ls
+   25  cd sshd_config 
+   26  ls
+   27  cat sshd_config 
+   28  clear
+   29  ls
+   30  ssh_host_rsa_key.pub
+   31  cat ssh_host_rsa_key.pub
+   32  cd ../../
+   33  ls
+   34  clear
+   35  git clone git@github.com:Arpanach12/devops-per-prac.git
+   36  git remote add origin git@github.com: Permission denied (publickey).
+   37  fatal: Could not read from remote repository.
+   38  Please make sure you have the correct access rights
+   39  and the repository exists.git@github.com: Permission denied (publickey).
+   40  fatal: Could not read from remote repository.
+   41  Please make sure you have the correct access rights
+   42  git remote add origin git@github.com:Arpanach12/devops-per-prac.git
+   43  clear
+   44  git clone git@github.com:Arpanach12/devops-per-prac.git
+   45  cd ../../
+   46  ls
+   47  cd prac/
+   48  ls
+   49  git init
+   50  git clone https://github.com/Arpanach12/devops-per-prac.git
+   51  ls
+   52  cd devops-per-prac/
+   53  ls
+   54  cd ../../
+   55  ls
+   56  cd prac
+   57  ls
+   58  cd devops-per-prac/
+   59  ls
+   60  mkdir 02-jenkins
+   61  ls
+   62  cd 02-jenkins/
+   63  apt-get install default-jdk -y
+   64  ls
+   65  cd ..
+   66  ls
+   67  cd ..
+   68  ls
+   69  cd ..
+   70  ls
+   71  cd root/
+   72  ls
+   73  cd ..
+   74  cd prac/devops-per-prac/
+   75  nohup  java -jar /root/jenkins.war --httpPort=9090 > output.txt & 
+   76  history
+   77  ls
+   78  cd 02-jenkins/\
+   79  cd 02-jenkins/
+   80  history > history.txt
+   81  ls
+   82  cat history.txt 
+   83  cd ../../
+   84  ls
+   85  cd prac/devops-per-prac/
+   86  ls
+   87  cat output.txt 
+   88  ls
+   89  git branch
+   90  git config
+   91  git config --global --list
+   92  git config --global user.name "Arpanach12"
+   93  git config --global user.editor vi 
+   94  ls
+   95  cd 02-jenkins/
+   96  ls
+   97  rm history.txt 
+   98  ls
+   99  history
+  100  history > history.txt
