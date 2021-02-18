@@ -1,0 +1,7 @@
+download petclinic code into a folder.
+go to petclinic code where pom file is present.
+mvn clean
+mvn compile(it will create a target folder)
+mvn package(it will create a war file)
+take the war file and paste it in opt/tomcat/webapps
+browse the tomcat url and give /petclinic it will show the running application.
