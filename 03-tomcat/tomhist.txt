@@ -1,5 +1,10 @@
   101  wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.56/bin/apache-tomcat-8.5.56.zip
+       After installing apache in zip format unzip it and copy it to opt/tomcat folder.
+        apt-get install unzip -y
+        unzip apache-tomcat-8.5.56.zip
+        cp -rf apache-tomcat-8.5.56 /opt/tomcat
   102  cd ../../
+       Edit tomcat-users.xml file and context.xml file to provide the deployment access.
   103  edit   /opt/tomcat/conf/tomcat-users.xml
   104  vi /opt/tomcat/conf/tomcat-users.xml
   105  chmod +x bin/catalina.sh 
