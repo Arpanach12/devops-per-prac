@@ -1,0 +1,12 @@
+Freestyle project:-
+add the gir url
+add git credentials if you want
+add the steps that you want to perform to build.
+mvn clean,mvn compile,mvn test,mvn package.
+in clean compile add the path of the pom file then only it can build-ex(mvn clean -f 02-jenkins/petclinic-code/pom.xml).
+archive the artifacts in post build action( path for that will be 02-jenkins/petclinic-code/target/*.war).
+-------------------------------------------------------------------------------------------------
+
+Maven Project:
+just add the path of pom file in root pom.
+and provide the goals(ex-clean,compile).
