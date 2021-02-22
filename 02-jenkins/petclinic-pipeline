@@ -1,0 +1,6 @@
+create a job of pipeline type.(its almost similar to freestyle job)
+go to pipeline section
+click on generate snippet 
+select the option for which you want to create the snippet(ex-git,shell,node)
+save and build.
+for stage view select stage snippet.
