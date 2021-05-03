@@ -1,0 +1,153 @@
+Ansible is a configuration management tool.
+ansible works on a push mechanism.
+Push mechanism- ansible will update the server if it is required on that server.
+Ansible is an open source IT config management tool, It is used in Deployment and orchestration.
+Ansible server push the update to nodes.
+It uses ruby language which is wriiten in YAML language.
+Ansible is agentless.
+Playbooks are wriiten on ansible server.
+
+
+how to establish ssh connection: -
+
+1.create one ansible server and two ansible nodes.
+2.Create 3EC2 instances and make connection with them through putty
+3.generate ppk file of the key that is saved by us while generating instances
+4.then copy the public ip address of each ec2 instances and access the instances
+through putty by going to putty and pasting the ip address and then do ssh-auth-browse-provide the ppk file there and save
+5.do sudo su
+6. download the ansible package.
+7. do ls
+8.install git, python,python-pip and ansible(for linux).
+9.ansible --version(to check its version if it is installed or not)
+10.vi etc/ansible/hosts
+a.press i
+b.make a group of hosts-
+1.[demo]
+copy the ip address
+c.:wq
+11. vi etc/ansible/ansible.cfg
+a.remove the comment from inventory sec.
+b.remoove the comment from sudo user.
+c.esc+:wq
+12.adduser ansible
+13.passwd ansible(username).
+a.give password-
+b.confirm password-
+14.repeat the process of adding user in other two nodes also.
+15.do su - ansible
+16.make a file touch filename.
+17.To give sudo privileges to ansible user: -(do this process as a root user)
+a.visudo
+b.press i
+c.add ansible user in allow root to run any command sec: -
+--ansible ALL=(ALL) NOPASSWD: ALL
+d.esc+:wq.
+18.repeat the same process in other two nodes also.
+19. do su - ansible
+20. do sudo yum install httpd -y(it'll be installed now).
+21. Now to make connection between server and nodes: -
+a.first be a root user vi /etc/ssh/sshd_config
+b.uncomment permituserlogin.
+c.uncomment first passwordauthentication.
+d.comment last passwordauthentication
+e.esc+:wq
+f. do service sshd restart.
+g.do the same in other nodes also
+h.first be a ansible user in server as well as nodes( su - ansible)
+i.ssh private ip of node
+22.To not get password while making ssh connection(as it is not possible to provide password everytime for nodes
+a.on Master- ssh-keygen
+b.ls -a (it will show a .ssh file which is used for ssh connection).
+c.cd .ssh/
+d.copy the is_rsa_pub to the nodes.: -
+e.command- ssh-copy-id ansible@private_ip_address_of_node.
+f.repeat for other nodes also.
+
+
+Host Patterns: -
+1.ansible all --list-hosts(It'll get all the hosts ip address).
+2.ansible demo --list-hosts
+3.ansible demo[0] --list-hosts
+4.ansible demo[0:1] --list-hosts
+5.ansible demo[-1] --list-hosts(For last node).
+
+
+
+ANSIBLE AD-HOC COMMANDS: -
+1.if we don't know about modules for a specific task then we can use linux ad-hoc commands.
+2.There is no idempotency in ad-hoc commands.
+3.Playbooks contains one or more modules.
+4.Playbooks are written in YAML language.
+5.AD-HOC are commands which can be run individually to perform quick functions.
+6.AD-hoc commands are not used for configuration management it is used only one time.
+7.Ansible groupname argument "command"(ansible demo -a "touch file"
+8.Ansible demo -ba "touch file"
+9.ansible demo -a "ls"(it'll show all the files on the nodes present in demo group).
+
+ANSIBLE Modules: -
+1.ansible demo -b -m modulename -a "command"
+2.ansible demo -b -m yum -a "pkg=httpd state=present"
+3.ansible demo -b -m copy -a "src = filename dest=/dir".
+4.Modules are idempotent.
+5.ansible demo -b -m user -a "name=username"
+6. ansible demo[-1] -b -m copy "src=filenameonserver dest=/temp"
+7.Setup module- It gathers information from nodes whenever we run the module or playbook on the server to get the info for the modules like whether or not that package is already present on nodes or not.
+8.Idempotency is possible on modules because of the setup module.
+9. ansible demo -m setup.
+10.ansible demo -m setup -a "filter=*ipv4*".(It will give the ip address info of the nodes).
+
+Playbooks: -
+1.It contains one or more modules
+2.It is wriiten in YAML language.
+3.Playbooks are like a file in which we can write code.
+4.Module is a collection of configuration file.
+5.Target section- It is the hosts against which playbook task has to be exectuted.
+6.Variable section- Defined varriable.
+7.YAML file starts with list.
+8.Each item in the list is a list of key-Value pairs commonly called as dictionary.
+9.All YAML files start with "---"
+10.all YAML file must be saved in the form playbook.yaml
+11.All members of a list lines must begin with same identation.
+12.Now go to master node: -
+a.do login as:ec2-user.
+b.sudo su
+c.su - ansible
+13.sape process of 12 repeat to other nodes also.
+14.Command to delete all files from server: - rm -rf *
+15.vi target.yml
+16.Handlers is same as task but it will run when called by another task.
+17.To check if the playbook is running fine (ansible-playbook playbookname --check)
+18.with_items we can implement loop.
+19.we can use command module and when module to apply condition in playbook.
+20.Vaults: -
+a.create a new encrypted playbook  (ansible-vault create playbookname.yml)
+b.edit the encrypted playbook (ansible-vault edit playbookname.yml)
+c.To change the password (ansible-vault rekey playbookname.yml)
+d.To encrypt a existing playbook (ansible-vault encrypt playbookname.yml)
+e.To decrypt a existing playbook (ansible-vault decrypt playbookname.yml)
+21.Roles: -
+a.Types of Roles: -
+Default: - It stores the data abt roles and application(ex port no).
+files: -It contains files that need to be transferred to the remote vms.
+Handlers: - They are triggers or tasks that we can segregate all the handlers reuired in playbook.
+Meta: - This directory defines role dependency like author name etc.
+Templates: -
+Tasks: - It contains all the task that is defined in a playbook.
+Vars: -Varriables used in the playbook are stored in this file and it is used in configuration file.
+b.Inside playbook there is a master.yml and rolename which is at the same level.
+inside master.yml we have role and target defined.
+in master.yml file we'll define all the host which needs to be targeted and also the role.
+and for role we'll define a rolename which can be changed
+inside rolename we'll define all the roles like tasks,handlers etc.
+whenever we execute we'll write ansible-playbook master.yml(It'll execute hosts and roles and all the tasks handlers etc defined inside the role).
+
+
+
+
+
+
+
+
+
+
