@@ -1,3 +1,10 @@
 sudo apt-get update
 sudo apt-get install openjdk-8-jdk
 java -version
+
+
+To install java on windows 
+
+https://download.oracle.com/otn-pub/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-windows-i586.exe
+
+then set the path of jdk in env variable.
